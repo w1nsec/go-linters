@@ -1,4 +1,4 @@
-package staticlint
+package linters
 
 import (
 	"go/ast"

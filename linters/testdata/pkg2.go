@@ -1,4 +1,4 @@
-package test
+package pkg1
 
 func mulfunc(i int) (int, error) {
 	return i * 2, nil
