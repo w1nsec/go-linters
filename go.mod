@@ -1,4 +1,4 @@
-module "github.com/w1nsec/staticlinter"
+module github.com/w1nsec/golinters
 
 go 1.20
 
