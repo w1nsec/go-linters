@@ -17,7 +17,7 @@ import (
 	"honnef.co/go/tools/staticcheck"
 	"log"
 	"os"
-	"staticlinter/linters"
+	"golinters/linters"
 	"strings"
 )
 
