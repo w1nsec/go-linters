@@ -2,6 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"log"
+	"os"
+	"strings"
+
 	"github.com/alexkohler/nakedret"
 	"github.com/gnieto/mulint/mulint"
 	"golang.org/x/tools/go/analysis"
@@ -15,10 +19,8 @@ import (
 	"golang.org/x/tools/go/analysis/passes/unusedresult"
 	"golang.org/x/tools/go/analysis/passes/unusedwrite"
 	"honnef.co/go/tools/staticcheck"
-	"log"
-	"os"
-	"golinters/linters"
-	"strings"
+	
+	"github.com/w1nsec/golinters"
 )
 
 const Config = "config.json"
