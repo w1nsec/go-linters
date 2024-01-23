@@ -4,6 +4,7 @@ import (
 	"go/ast"
 	"go/types"
 	"golang.org/x/tools/go/analysis"
+	"strings"
 )
 
 var ErrCheckAnalyzer = &analysis.Analyzer{
@@ -17,8 +18,19 @@ func run(pass *analysis.Pass) (interface{}, error) {
 		// проверяем, что выражение представляет собой вызов функции,
 		// у которой возвращаемая ошибка никак не обрабатывается
 		if call, ok := x.X.(*ast.CallExpr); ok {
-			if isReturnError(pass, call) {
-				pass.Reportf(x.Pos(), "expression returns unchecked error")
+			if fName, ok := call.Fun.(*ast.SelectorExpr); ok {
+				if !strings.Contains(fName.Sel.Name, "Println") &&
+					!strings.Contains(fName.Sel.Name, "Printf") {
+					if isReturnError(pass, call) {
+						pass.Reportf(x.Pos(), "expression returns unchecked error")
+					}
+				}
+
+			}
+			if _, ok := call.Fun.(*ast.Ident); ok {
+				if isReturnError(pass, call) {
+					pass.Reportf(x.Pos(), "expression returns unchecked error")
+				}
 			}
 		}
 	}

@@ -11,5 +11,7 @@ func errCheckFunc() {
 	// описанную в комментарии want
 	mulfunc(5)           // want "expression returns unchecked error"
 	res, _ := mulfunc(5) // want "assignment with unchecked error"
-	fmt.Println(res)     // want "expression returns unchecked error"
+	// OLD: fmt.Print* will raise error
+	//fmt.Println(res)     // = want "expression returns unchecked error"
+	fmt.Println(res)
 }

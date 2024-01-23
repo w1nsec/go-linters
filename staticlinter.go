@@ -9,6 +9,11 @@ import (
 	"golang.org/x/tools/go/analysis/passes/printf"
 	"golang.org/x/tools/go/analysis/passes/shadow"
 	"golang.org/x/tools/go/analysis/passes/structtag"
+	"golang.org/x/tools/go/analysis/passes/unmarshal"
+	"golang.org/x/tools/go/analysis/passes/unreachable"
+	"golang.org/x/tools/go/analysis/passes/unsafeptr"
+	"golang.org/x/tools/go/analysis/passes/unusedresult"
+	"golang.org/x/tools/go/analysis/passes/unusedwrite"
 	"honnef.co/go/tools/staticcheck"
 	"log"
 	"os"
@@ -103,6 +108,16 @@ func main() {
 		// third-party analyzers
 		nakedret.NakedReturnAnalyzer(DefaultLines),
 		mulint.Mulint,
+		// report passing non-pointer or non-interface values to unmarshal
+		unmarshal.Analyzer,
+		// check for unreachable code
+		unreachable.Analyzer,
+		// check for invalid conversions of uintptr to unsafe.Pointer
+		unsafeptr.Analyzer,
+		// check for unused results of calls to some functions
+		unusedresult.Analyzer,
+		// check for unused writes
+		unusedwrite.Analyzer,
 	}
 
 	readConfig = false
