@@ -1,4 +1,4 @@
-module staticlinter
+module "github.com/w1nsec/staticlinter"
 
 go 1.20
 
