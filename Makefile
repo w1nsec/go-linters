@@ -3,7 +3,7 @@ all: clean build
 check: checkExit checkErr
 
 build:
-	go build -o staticlinter staticlinter.go
+	go build -o staticlinter cmd/staticlinter.go
 clean:
 	rm -rf staticlinter
 
