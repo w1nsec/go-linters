@@ -20,7 +20,7 @@ import (
 	"golang.org/x/tools/go/analysis/passes/unusedwrite"
 	"honnef.co/go/tools/staticcheck"
 	
-	"github.com/w1nsec/golinters/linters"
+	"github.com/w1nsec/go-linters/linters"
 )
 
 const Config = "config.json"
